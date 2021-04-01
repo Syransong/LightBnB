@@ -134,9 +134,14 @@ const getAllProperties = function(options, limit = 10) {
     }
   }
 
-  // if (options.minimum_rating) {
-
-  // }
+  if (options.minimum_rating) {
+    queryParams.push(`%${options.minimum_rating}%`);
+    if (queryParams.length === 1) {
+      queryString += `WHERE rating >= $${queryParams.length} `;
+    } else {
+      queryString += `AND rating >= $${queryParams.length} `;
+    }
+  }
 
   queryParams.push(limit);
   queryString += `
