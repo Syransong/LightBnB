@@ -17,10 +17,8 @@ const pool = new Pool({
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithEmail = function(email) {
-  return pool
-    .query(`
-    SELECT *
-    FROM users
+  return pool.query(`
+    SELECT * FROM users
     WHERE email = $1
     `, [email])
     .then(res => res.rows[0])
@@ -34,10 +32,8 @@ exports.getUserWithEmail = getUserWithEmail;
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithId = function(id) {
-  return pool
-  .query(`
-  SELECT id
-  FROM users
+  return pool.query(`
+  SELECT id FROM users
   WHERE id = $1
   `, [id])
   .then(res => res.rows[0])
@@ -84,10 +80,8 @@ exports.getAllReservations = getAllReservations;
  * @return {Promise<[{}]>}  A promise to the properties.
  */
 const getAllProperties = function(options, limit = 10) {
-  return pool
-    .query(`
-    SELECT *
-    FROM properties
+  return pool.query(`
+    SELECT * FROM properties
     LIMIT $1
     `, [limit])
     .then(res => res.rows)
