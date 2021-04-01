@@ -80,12 +80,8 @@ const getAllProperties = function(options, limit = 10) {
     LIMIT $1
     `, [limit])
     .then(res => res.rows)
-    .catch(err => console.log(err));
-  const limitedProperties = {};
-  for (let i = 1; i <= limit; i++) {
-    limitedProperties[i] = properties[i];
-  }
-  return Promise.resolve(limitedProperties);
+    .catch(err => console.log(err)
+    );
 }
 exports.getAllProperties = getAllProperties;
 
